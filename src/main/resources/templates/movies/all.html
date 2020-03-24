@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add new programmer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div th:include="fragments/menu"></div>
+
+        <form class="row" method="post" th:action="@{/movies/search}" th:object="${movies}" novalidate>
+            <div class="form-group">
+                <label for="title">Title:</label>
+                <input type="text" class="form-control col" id="title" th:field="*{email}" placeholder="Enter email" name="email">
+            </div>
+            <div class="form-group">
+                <label for="pwd">Password:</label>
+                <input type="password" class="form-control" id="pwd" th:field="*{password}" placeholder="Enter password" name="pwd">
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+        </form>
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-8 offset-2">
+                <table class="table table-bordered">
+                    <thead>
+                    <th>#</th>
+                    <th>Title</th>
+                    <th>Genre</th>
+                    <th>Duration</th>
+                    <th>Release Date</th>
+                    </thead>
+                    <tbody>
+                    <tr th:each="movieDto, iter : ${movies}">
+                        <td th:text="${iter.count}"></td>
+                        <td th:text="${movieDto.title}"></td>
+                        <td th:text="${movieDto.genre}"></td>
+                        <td th:text="${movieDto.duration}"></td>
+                        <td th:text="${movieDto.releaseDate}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
